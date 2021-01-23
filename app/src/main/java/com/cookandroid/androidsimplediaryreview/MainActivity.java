@@ -2,6 +2,7 @@ package com.cookandroid.androidsimplediaryreview;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,8 +37,20 @@ public class MainActivity extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
+        fileName = year + "_" + (month + 1) + "_" + day + ".txt";
+
+
+        if (fileRead(fileName) == null) {
+            editDiary.setText("일기 없음");
+            btnWrite.setText("새로 저장");
+        } else {
+            editDiary.setText(fileRead(fileName));
+            btnWrite.setText("수정하기");
+        }
+
 
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
+
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 fileName = year + "_" + (monthOfYear + 1) + "_" + dayOfMonth + ".txt";
