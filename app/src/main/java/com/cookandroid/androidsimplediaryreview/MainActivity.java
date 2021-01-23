@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (fileRead(fileName) == null) {
-            editDiary.setText("일기 없음");
+            editDiary.setHint("일기 없음");
             btnWrite.setText("새로 저장");
         } else {
             editDiary.setText(fileRead(fileName));
